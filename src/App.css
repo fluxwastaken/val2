@@ -1,0 +1,188 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffe6f2; /* Light pink background */
+  overflow: hidden; /* Prevent scrolling during animation */
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Valentine's Content */
+.valentine-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition: transform 1s ease-in-out;
+}
+
+.valentine-content.slide-out {
+  transform: translateX(-200%); /* Slide even farther to the left */
+}
+
+.heart {
+  width: 100px;
+  height: 90px;
+  background-color: red;
+  position: relative;
+  margin: 0 auto;
+  transform: rotate(-45deg);
+  animation: beat 1s infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  width: 100px;
+  height: 90px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -45px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 45px;
+}
+
+@keyframes beat {
+  0%, 100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+.valentine-message {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: #cc0066; /* Dark pink color */
+  margin-top: 20px;
+  text-align: center;
+}
+
+.slide-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #cc0066;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slide-button:hover {
+  background-color: #99004d;
+}
+
+/* Slideshow Content */
+.slideshow-content {
+  position: absolute;
+  top: 0;
+  left: 100%; /* Start off-screen */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s ease-in-out;
+  visibility: hidden; /* Hide initially */
+}
+
+.slideshow-content.slide-in {
+  transform: translateX(-100%);
+  visibility: visible; /* Show after sliding in */
+}
+
+.slideshow-image-container {
+  width: 80%;
+  /* max-width: 700px; */
+  scale: 100%;
+  height: 100%;
+  overflow: clip;
+  align-items: center;
+  border-radius: 15px;
+  position: relative;
+}
+
+.slideshow-image {
+  width: 100%;
+  height: auto;
+  scale: 100%;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  transition: transform 1.5s ease-in-out;
+}
+
+/* Sliding animation effect */
+.slide-animation .slideshow-image {
+  transform: translateX(-600%);
+}
+.slideshow-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 90%; /* Responsive width */
+  max-width: 400px; /* Maximum width */
+}
+
+.slideshow-controls button {
+  padding: 10px 20px;
+  background-color: #cc0066;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slideshow-controls button:hover {
+  background-color: #99004d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .valentine-message {
+    font-size: 2rem; /* Smaller font size for smaller screens */
+  }
+
+  .slideshow-image-container {
+    height: 200px; /* Smaller height for smaller screens */
+  }
+
+  .slideshow-controls button {
+    padding: 8px 16px; /* Smaller buttons for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .valentine-message {
+    font-size: 1.5rem; /* Even smaller font size for mobile */
+  }
+
+  .slideshow-image-container {
+    height: 150px; /* Smaller height for mobile */
+  }
+
+  .slideshow-controls button {
+    padding: 6px 12px; /* Smaller buttons for mobile */
+  }
+}
